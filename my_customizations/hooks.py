@@ -249,4 +249,43 @@ app_license = "mit"
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
-
+fixtures = [
+    {
+        "dt": "Property Setter",
+        "filters": [
+            ["doc_type", "in", ["Purchase Invoice", "Purchase Receipt", "BOM", "Production Plan", "Stock Entry" ,"Employee", "Vehicle In Permissions", "Vehicle In", "Vehicle Out Permission", "Vehicle Out", "Visitor Permission", "Visitor In", "Visitor Out", "Employee Permission", "Employee In", "Employee Out", "Courier In", "Courier Out", "Courior Out Detail"]]
+        ]
+    },
+    {
+        "dt": "Custom Field",
+        "filters": [
+            ["dt", "in", ["Purchase Invoice", "Purchase Receipt", "BOM", "Production Plan", "Stock Entry", "Vehicle In Permissions", "Vehicle In", "Vehicle Out Permission", "Vehicle Out", "Visitor Permission", "Visitor In", "Visitor Out", "Employee Permission", "Employee In", "Employee Out", "Courier In", "Courier Out", "Courior Out Detail"]]
+        ]
+    },
+	{
+    "dt":"Client Script",
+	},
+	{
+    "dt":"Server Script"
+	},	
+    {
+        "dt": "Item Group"
+    },
+    {
+        "dt": "Workspace",
+        "filters": [
+            ["name", "=", "Gate Entry"]
+        ]
+    },
+    {
+    "dt": "Print Format",
+    "filters": [
+        ["name", "in", [
+            "Vehicle In Receipt",
+            "Visitor In Receipt",
+            "Employee In Receipt",
+			"Courier In Receipt"
+        ]]
+    ]
+    }
+]

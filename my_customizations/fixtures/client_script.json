@@ -1,0 +1,35 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Vehicle In",
+  "enabled": 1,
+  "modified": "2026-02-24 14:34:48.969041",
+  "module": "development",
+  "name": "Open Print Format on Vehicle In Submit",
+  "script": "frappe.ui.form.on('Vehicle In', {\n after_save: function(frm) {\n        frappe.utils.print(\n            frm.doctype,\n            frm.doc.name,\n            'Vehicle In Receipt'\n        );\n    }\n})",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Visitor In",
+  "enabled": 1,
+  "modified": "2026-02-24 14:34:43.124134",
+  "module": "development",
+  "name": "Open Print Format on Visitor In",
+  "script": "frappe.ui.form.on('Visitor In', {\n\tafter_save: function(frm) {\n        frappe.utils.print(\n            frm.doctype,\n            frm.doc.name,\n            'Visitor In Receipt'\n        );\n    }\n})",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Employee In",
+  "enabled": 1,
+  "modified": "2026-02-24 14:34:35.454790",
+  "module": "development",
+  "name": "Open Print Format On Employee In",
+  "script": "frappe.ui.form.on('Employee In', {\nafter_save: function(frm) {\n        frappe.utils.print(\n            frm.doctype,\n            frm.doc.name,\n            'Employee In Receipt'\n        );\n    }\n})",
+  "view": "Form"
+ }
+]
