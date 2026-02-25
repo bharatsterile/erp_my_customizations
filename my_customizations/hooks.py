@@ -302,11 +302,5 @@ fixtures = [
     # --------------------
     {
         "dt": "Custom DocPerm"
-    },
-    {
-        "dt": "Warehouse",
-        "filters": [
-            ["company", "=", "BHARAT STERILE PRIVATE LIMITED"]
-        ]
     }
 ]
