@@ -287,5 +287,26 @@ fixtures = [
 			"Courier In Receipt"
         ]]
     ]
+    },
+    # ROLE MASTER
+    # --------------------
+    {
+        "dt": "Role",
+        "filters": [
+            ["name", "not in", ["Administrator", "Guest", "All"]]
+        ]
+    },
+
+    # --------------------
+    # ROLE PERMISSIONS (DocType Permission)
+    # --------------------
+    {
+        "dt": "Custom DocPerm"
+    },
+    {
+        "dt": "Warehouse",
+        "filters": [
+            ["company", "=", "BHARAT STERILE PRIVATE LIMITED"]
+        ]
     }
 ]

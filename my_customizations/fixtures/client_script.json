@@ -31,5 +31,16 @@
   "name": "Open Print Format On Employee In",
   "script": "frappe.ui.form.on('Employee In', {\nafter_save: function(frm) {\n        frappe.utils.print(\n            frm.doctype,\n            frm.doc.name,\n            'Employee In Receipt'\n        );\n    }\n})",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Material Request",
+  "enabled": 1,
+  "modified": "2026-02-25 13:09:04.032736",
+  "module": "Stock",
+  "name": "Material Request from Production Plan",
+  "script": "frappe.ui.form.on('Material Request', {\n\trefresh: function(frm) {\n\n        // Check if created from Production Plan\n        if (frm.doc.production_plan) {\n\n            // Set only Purchase as option\n            frm.set_df_property('material_request_type', 'options', ['Purchase']);\n\n            // Force value to Purchase\n            frm.set_value('material_request_type', 'Purchase');\n\n            // Make field read-only\n            frm.set_df_property('material_request_type', 'read_only', 1);\n        }\n    }\n})",
+  "view": "Form"
  }
 ]
