@@ -207,5 +207,24 @@
   "reference_doctype": "Stock Entry",
   "script": "QC_WAREHOUSES = (\n    \"RM Under Test Store - (A) - BS\",\n    \"RM Under Test Store - (B) - BS\",\n    \"RM Under Test Store - (C) - BS\",\n    \"PM Under Test Store - (A) - BS\",\n    \"PM Under Test Store - (B) - BS\",\n    \"PM Under Test Store - (C) - BS\",\n)\n\ndef get_batch_no_from_bundle(bundle):\n    if not bundle:\n        return None\n\n    return frappe.db.get_value(\n        \"Serial and Batch Entry\",\n        {\"parent\": bundle},\n        \"batch_no\"\n    )\n\ncreated = False\n\nfor item in doc.items:\n\n    target_warehouse = item.t_warehouse or doc.to_warehouse\n\n    frappe.log_error(\n        f\"Checking item {item.item_code} | Warehouse: {target_warehouse}\",\n        \"QC TRACE\"\n    )\n\n    if not target_warehouse or target_warehouse not in QC_WAREHOUSES:\n        continue\n\n    has_batch = frappe.db.get_value(\"Item\", item.item_code, \"has_batch_no\")\n    if not has_batch:\n        continue\n\n    batch_no = item.batch_no or get_batch_no_from_bundle(item.serial_and_batch_bundle)\n\n    if not batch_no:\n        frappe.throw(\n            f\"Batch No is mandatory for Quality Inspection. \"\n            f\"Please set Batch No for Item <b>{item.item_code}</b>\"\n        )\n\n    if frappe.db.exists(\n        \"Quality Inspection\",\n        {\n            \"reference_type\": \"Stock Entry\",\n            \"reference_name\": doc.name,\n            \"item_code\": item.item_code,\n            \"batch_no\": batch_no,\n        }\n    ):\n        continue\n\n    qi = frappe.get_doc({\n        \"doctype\": \"Quality Inspection\",\n        \"inspection_type\": \"Incoming\",\n        \"reference_type\": \"Stock Entry\",\n        \"reference_name\": doc.name,\n        \"item_code\": item.item_code,\n        \"batch_no\": batch_no,\n        \"sample_size\": 1,\n        \"company\": doc.company,\n        \"inspected_by\": frappe.session.user,\n    })\n\n    qi.insert(ignore_permissions=True)\n    created = True\n\nif not created:\n    frappe.log_error(\"No Quality Inspection created\", \"QC RESULT\")\n",
   "script_type": "DocType Event"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "After Submit",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-02-26 14:30:08.005120",
+  "module": "Manufacturing",
+  "name": "Notification to Purchase Manager on Purchase Material Request",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": "Material Request",
+  "script": "# Run only for Purchase Material Request\nif doc.material_request_type == \"Purchase\":\n\n    roles_to_notify = [\n        \"Purchase Master Manager\",\n        \"Purchase Manager\"\n    ]\n\n    # Get users having these roles\n    role_users = frappe.get_all(\n        \"Has Role\",\n        filters={\"role\": [\"in\", roles_to_notify]},\n        pluck=\"parent\"\n    )\n\n    users = []\n\n    if role_users:\n        # Remove disabled users\n        users = frappe.get_all(\n            \"User\",\n            filters={\n                \"name\": [\"in\", role_users],\n                \"enabled\": 1\n            },\n            pluck=\"name\"\n        )\n\n    if users:\n        # Prepare important field details\n        fields_data = []\n\n        fields_data.append(f\"<b>Material Request ID</b>: {doc.name}\")\n        fields_data.append(f\"<b>Company</b>: {doc.company}\")\n        fields_data.append(f\"<b>Requested By</b>: {doc.owner}\")\n        fields_data.append(f\"<b>Transaction Date</b>: {doc.transaction_date}\")\n        fields_data.append(f\"<b>Status</b>: {doc.status}\")\n\n        message = f\"\"\"\n        <h4>Purchase Material Request Submitted</h4>\n        <hr>\n        {'<br>'.join(fields_data)}\n        <br><br>\n        <a href=\"/app/material-request/{doc.name}\">Open Material Request</a>\n        \"\"\"\n\n        # Create Bell Notifications\n        for user in users:\n            frappe.get_doc({\n                \"doctype\": \"Notification Log\",\n                \"subject\": f\"Material Request {doc.name} Submitted\",\n                \"email_content\": message,\n                \"for_user\": user,\n                \"document_type\": doc.doctype,\n                \"document_name\": doc.name,\n                \"type\": \"Alert\",\n                \"read\": 0\n            }).insert(ignore_permissions=True)",
+  "script_type": "DocType Event"
  }
 ]

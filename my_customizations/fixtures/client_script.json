@@ -42,5 +42,16 @@
   "name": "Material Request from Production Plan",
   "script": "frappe.ui.form.on('Material Request', {\n\trefresh: function(frm) {\n\n        // Check if created from Production Plan\n        if (frm.doc.production_plan) {\n\n            // Set only Purchase as option\n            frm.set_df_property('material_request_type', 'options', ['Purchase']);\n\n            // Force value to Purchase\n            frm.set_value('material_request_type', 'Purchase');\n\n            // Make field read-only\n            frm.set_df_property('material_request_type', 'read_only', 1);\n        }\n    }\n})",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Production Plan",
+  "enabled": 1,
+  "modified": "2026-02-26 10:52:30.087363",
+  "module": "Manufacturing",
+  "name": "FG Items and FG warehouse in Assembly Items in Production Plan",
+  "script": "frappe.ui.form.on('Production Plan', {\n    refresh: function(frm) {\n\n        // Filter Item in Assembly Items\n        frm.set_query('item_code', 'po_items', function(doc, cdt, cdn) {\n            return {\n                filters: {\n                    item_code: ['like', 'FG%']\n                }\n            };\n        });\n\n        // Filter Warehouse in Assembly Items\n        frm.set_query('warehouse', 'po_items', function(doc, cdt, cdn) {\n            return {\n                filters: {\n                    name: ['like', 'FG%']\n                }\n            };\n        });\n        \n        // Filter Sub Assembly Warehouse (Parent Field)\n        frm.set_query('sub_assembly_warehouse', function() {\n            return {\n                filters: {                     \n\t\t\t\t\tname: ['like', 'FG QUARANTINE%']\n                }\n            };\n        });\n\n    }\n});",
+  "view": "Form"
  }
 ]
