@@ -310,7 +310,7 @@ fixtures = [
     {
         "dt": "DocType",
         "filters": [
-            ["name", "=", "Section"]
+            ["name", "in", ["Section", "Manufacturing Batch"]]
         ]
     },
     {

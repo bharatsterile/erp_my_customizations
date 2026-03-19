@@ -70,10 +70,32 @@
   "doctype": "Client Script",
   "dt": "Material Request",
   "enabled": 1,
-  "modified": "2026-03-06 10:33:16.904831",
+  "modified": "2026-03-11 17:20:49.615932",
   "module": "Manufacturing",
   "name": "Material Request from Work Order Link Stock Entry",
-  "script": "frappe.ui.form.on(\"Material Request\", {\n    refresh(frm) {\n\n        if (frm.doc.material_request_type === \"Manufacture\") {\n\n            // Remove default Work Order button\n            frm.remove_custom_button(\"Work Order\", \"Create\");\n\n            // Add Stock Entry button\n            frm.add_custom_button(\"Stock Entry\", function () {\n\n                let work_order = null;\n\n                // Get Work Order from Material Request Items\n                if (frm.doc.items && frm.doc.items.length > 0) {\n                    work_order = frm.doc.items[0].work_order;\n                }\n\n                frappe.new_doc(\"Stock Entry\", {\n                    stock_entry_type: \"Material Transfer for Manufacture\",\n                    work_order: work_order,\n                    material_request: frm.doc.name\n                });\n\n            }, \"Create\");\n        }\n    }\n});",
+  "script": "frappe.ui.form.on(\"Material Request\", {\n    refresh(frm) {\n\n        if (frm.doc.material_request_type === \"Manufacture\") {\n\n            frm.remove_custom_button(\"Work Order\", \"Create\");\n\n            frm.add_custom_button(\"Stock Entry\", function () {\n\n                frappe.call({\n                    method: \"erpnext.stock.doctype.material_request.material_request.make_stock_entry\",\n                    args: {\n                        source_name: frm.doc.name\n                    },\n                    callback: function(r) {\n\n                        if (r.message) {\n\n                            let doc = frappe.model.sync(r.message)[0];\n\n                            // Set correct purpose\n                            doc.purpose = \"Material Transfer for Manufacture\";\n                            doc.stock_entry_type = \"Material Transfer for Manufacture\";\n\n                            frappe.set_route(\"Form\", doc.doctype, doc.name);\n                        }\n                    }\n                });\n\n            }, \"Create\");\n\n        }\n    }\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Work Order",
+  "enabled": 1,
+  "modified": "2026-03-19 10:24:32.977519",
+  "module": "Manufacturing",
+  "name": "Pull Product Type from BOM in Work Order",
+  "script": "frappe.ui.form.on('Work Order', {\n    bom_no(frm){\n\n        if(frm.doc.bom_no){\n\n            frappe.db.get_value(\n                \"BOM\",\n                frm.doc.bom_no,\n                \"custom_product_type\",\n                function(r){\n\n                    if(r.custom_product_type){\n                        frm.set_value(\"custom_product_type\", r.custom_product_type)\n                    }\n\n                }\n            )\n\n        }\n\n    },\n\n    product_type(frm){\n\n        if(frm.doc.custom_product_type == \"Finished\"){\n\n            frm.set_df_property(\n                \"custom_batch_option\",\n                \"options\",\n                [\"Create New Batch\",\"Select Semi-Finished Batch\"]\n            )\n\n        }\n\n        if(frm.doc.custom_product_type == \"Semi-Finished\"){\n\n            frm.set_df_property(\n                \"custom_batch_option\",\n                \"options\",\n                [\"Create New Batch\",\"Select Finished Batch\"]\n            )\n\n        }\n        \n        frm.refresh_field(\"custom_linked_batch\")\n\n    },\n    refresh(frm){\n\n        frm.set_query(\"custom_linked_batch\", function(){\n\n            if(frm.doc.custom_batch_option == \"Select Semi-Finished Batch\"){\n\n                return {\n                    filters:{\n                        name:[\"like\",\"%-S\"]\n                    }\n                }\n\n            }\n\n            if(frm.doc.custom_batch_option == \"Select Finished Batch\"){\n\n                return {\n                    filters:{\n                        name:[\"not like\",\"%-S\"]\n                    }\n                }\n\n            }\n\n        })\n\n    }\n\n})",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Stock Entry",
+  "enabled": 1,
+  "modified": "2026-03-19 10:24:27.508117",
+  "module": "Manufacturing",
+  "name": "Auto pull Manufacturing Batch in Stock Entry from Work Order",
+  "script": "frappe.ui.form.on(\"Stock Entry\", {\n\n    onload(frm) {\n        set_manufacturing_batch(frm);\n    },\n\n    refresh(frm) {\n        set_manufacturing_batch(frm);\n    },\n\n    work_order(frm) {\n        set_manufacturing_batch(frm);\n    }\n\n});\n\n\nfunction set_manufacturing_batch(frm) {\n\n    if (frm.doc.work_order && !frm.doc.custom_manufacturing_batch) {\n\n        frappe.db.get_value(\n            \"Work Order\",\n            frm.doc.work_order,\n            \"custom_manufacturing_batch\",\n            function (r) {\n\n                if (r && r.custom_manufacturing_batch) {\n\n                    frm.set_value(\n                        \"custom_manufacturing_batch\",\n                        r.custom_manufacturing_batch\n                    );\n\n                }\n\n            }\n        );\n\n    }\n\n}",
   "view": "Form"
  }
 ]
