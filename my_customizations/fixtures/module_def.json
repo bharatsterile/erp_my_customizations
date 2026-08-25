@@ -1,0 +1,57 @@
+[
+ {
+  "app_name": "frappe",
+  "custom": 1,
+  "docstatus": 0,
+  "doctype": "Module Def",
+  "modified": "2026-03-20 09:29:46.721740",
+  "module_name": "Manufacturing Batch Management",
+  "name": "Manufacturing Batch Management",
+  "package": null,
+  "restrict_to_domain": null
+ },
+ {
+  "app_name": "development",
+  "custom": 1,
+  "docstatus": 0,
+  "doctype": "Module Def",
+  "modified": "2026-03-09 14:41:48.114664",
+  "module_name": "Section Management",
+  "name": "Section Management",
+  "package": null,
+  "restrict_to_domain": null
+ },
+ {
+  "app_name": "frappe",
+  "custom": 1,
+  "docstatus": 0,
+  "doctype": "Module Def",
+  "modified": "2026-04-02 17:50:41.263833",
+  "module_name": "White Label Management",
+  "name": "White Label Management",
+  "package": null,
+  "restrict_to_domain": null
+ },
+ {
+  "app_name": "frappe",
+  "custom": 1,
+  "docstatus": 0,
+  "doctype": "Module Def",
+  "modified": "2026-04-02 17:52:31.633421",
+  "module_name": "Micro Test QC",
+  "name": "Micro Test QC",
+  "package": null,
+  "restrict_to_domain": null
+ },
+ {
+  "app_name": "frappe",
+  "custom": 1,
+  "docstatus": 0,
+  "doctype": "Module Def",
+  "modified": "2026-04-14 15:56:46.684781",
+  "module_name": "Sales and Dispatch",
+  "name": "Sales and Dispatch",
+  "package": null,
+  "restrict_to_domain": null
+ }
+]

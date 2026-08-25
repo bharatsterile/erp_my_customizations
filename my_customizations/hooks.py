@@ -28,6 +28,9 @@ app_license = "mit"
 # app_include_css = "/assets/my_customizations/css/my_customizations.css"
 # app_include_js = "/assets/my_customizations/js/my_customizations.js"
 
+app_include_css = "/assets/my_customizations/css/branding.css"
+app_include_js = "/assets/my_customizations/js/branding.js"
+
 # include js, css files in header of web template
 # web_include_css = "/assets/my_customizations/css/my_customizations.css"
 # web_include_js = "/assets/my_customizations/js/my_customizations.js"
@@ -249,4 +252,83 @@ app_license = "mit"
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
+fixtures = [
+    {
+        "dt": "Property Setter",
+        "filters": [
+            ["doc_type", "in", ["Purchase Invoice", "Purchase Receipt", "BOM", "BOM Item", "BOM Scrap Item", "Production Plan", "Stock Entry" , "Work Order", "Employee", "Vehicle In Permissions", "Vehicle In", "Vehicle Out Permission", "Vehicle Out", "Visitor Permission", "Visitor In", "Visitor Out", "Employee Permission", "Employee In", "Employee Out", "Courier In", "Courier Out", "Courior Out Detail"]]
+        ]
+    },
+    {
+        "dt": "Custom Field",
+        "filters": [
+            ["dt", "in", ["Purchase Invoice", "Purchase Receipt", "BOM", "BOM Item", "BOM Scrap Item", "Production Plan", "Stock Entry", "Work Order", "Vehicle In Permissions", "Vehicle In", "Vehicle Out Permission", "Vehicle Out", "Visitor Permission", "Visitor In", "Visitor Out", "Employee Permission", "Employee In", "Employee Out", "Courier In", "Courier Out", "Courior Out Detail"]]
+        ]
+    },
+        {
+    "dt":"Client Script",
+        },
+        {
+    "dt":"Server Script"
+        },
+    {
+        "dt": "Item Group"
+    },
+    {
+        "dt": "Workspace",
+        "filters": [
+            ["name", "=", "Gate Entry"]
+        ]
+    },
+    {
+    "dt": "Print Format",
+    "filters": [	
+        ["name", "in", [
+            "Vehicle In Receipt",
+            "Visitor In Receipt",
+            "Employee In Receipt",
+            "Courier In Receipt",
+            "White label Receipt",
+            "Inner Container Label",
+            "Outer Container Label",
+            "Micro Test QC",
+            "Quotation Print",
+            "Sales Order Print",
+            "Sales Invoice Print Custom",
+            "Sample Label Receipt"
+        ]]
+    ]
+    },
+    # ROLE MASTER
+    # --------------------
+    {
+        "dt": "Role",
+        "filters": [
+            ["name", "not in", ["Administrator", "Guest", "All"]]
+        ]
+    },
 
+    # --------------------
+    # ROLE PERMISSIONS (DocType Permission)
+    # --------------------
+    {
+        "dt": "Custom DocPerm"
+    },
+
+    # --------------------
+    # SECTION DOCTYPE
+    # --------------------
+    {
+        "dt": "DocType",
+        "filters": [
+            ["name", "in", ["Section", "Manufacturing Batch","White Label","Container Code","Container Code Detail","Inner Container Label","Outer Container Label","Micro Test QC",
+                            "Tracking Number","PDC Documents","Customer Technical Review","Sample Testing","Approved Vendor Registration","Collect Commercial Information","Finance Approval","Price Negotiation"]]
+        ]
+    },
+    {
+        "dt": "Module Def",
+        "filters": [
+            ["name", "in", ["Section Management","Manufacturing Batch Management","Micro Test QC","White Label Management","Sales and Dispatch"]]
+        ]
+    }
+]	

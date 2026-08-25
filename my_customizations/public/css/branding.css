@@ -1,0 +1,19 @@
+/* BSR Branding */
+
+.navbar-brand img {
+    max-height: 35px !important;
+    width: auto !important;
+    display: block !important;
+}
+
+/* Hide Frappe footer */
+.erpnext-footer,
+.frappe-footer {
+    display: none !important;
+}
+/* Replace ERPNext loading splash logo */
+.splash img[src*="/assets/erpnext/images/erpnext-logo.svg"] {
+	content: url("/assets/my_customizations/images/bsap-logo.jpg") !important;
+	max-width: 200px !important;
+	width: auto !important;
+}
