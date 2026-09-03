@@ -325,7 +325,7 @@ fixtures = [
         "dt": "DocType",
         "filters": [
             ["name", "in", ["Section", "Manufacturing Batch","White Label","Container Code","Container Code Detail","Inner Container Label","Outer Container Label","Micro Test QC",
-                            "Tracking Number","PDC Documents","Customer Technical Review","Sample Testing","Approved Vendor Registration","Collect Commercial Information","Finance Approval","Price Negotiation","New And Existing Product Analysis Module","Section-Wise Production Capacity","Item Wise Production Capacity","CRM Prospect Item Conversion Status","Sample Sent","Sample Details","Sample Request","Sample Product","Weekly Off Roster","Weekly Off Roster Detail"]]
+                            "Tracking Number","PDC Documents","Customer Technical Review","Sample Testing","Sample Sent","Sample Request","Sample Details","Sample Product","Approved Vendor Registration","Collect Commercial Information","Finance Approval","Price Negotiation","New And Existing Product Analysis Module","Section-Wise Production Capacity","Item Wise Production Capacity","CRM Prospect Item Conversion Status","Sample Sent","Sample Details","Sample Request","Sample Product","Weekly Off Roster","Weekly Off Roster Detail"]]
         ]
     },
     {
