@@ -272,15 +272,22 @@
     "type": "Link"
    }
   ],
-  "modified": "2026-02-24 11:14:47.799415",
-  "module": null,
+  "modified": "2026-09-05 11:42:09.606693",
+  "module": "development",
   "name": "Gate Entry",
   "number_cards": [],
   "parent_page": "",
   "public": 1,
   "quick_lists": [],
   "restrict_to_domain": null,
-  "roles": [],
+  "roles": [
+   {
+    "role": "Gate Manager"
+   },
+   {
+    "role": "Reception"
+   }
+  ],
   "sequence_id": 23.0,
   "shortcuts": [],
   "title": "Gate Entry",

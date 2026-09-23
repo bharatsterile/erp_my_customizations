@@ -256,13 +256,13 @@ fixtures = [
     {
         "dt": "Property Setter",
         "filters": [
-            ["doc_type", "in", ["Purchase Invoice", "Purchase Receipt", "BOM", "BOM Item", "BOM Scrap Item", "Production Plan", "Stock Entry" , "Work Order", "Employee", "Vehicle In Permissions", "Vehicle In", "Vehicle Out Permission", "Vehicle Out", "Visitor Permission", "Visitor In", "Visitor Out", "Employee Permission", "Employee In", "Employee Out", "Courier In", "Courier Out", "Courior Out Detail","Shift Schedule","Prospect","Prospect","Micro Test QC","Micro Test QC","Salary Slip","Attendance","Employee","Opportunity","PO Approval","Price Negotiation"]]
+            ["doc_type", "in", ["Purchase Invoice", "Purchase Receipt", "BOM", "BOM Item", "BOM Scrap Item", "Production Plan", "Stock Entry" , "Work Order", "Employee", "Vehicle In Permissions", "Vehicle In", "Vehicle Out Permission", "Vehicle Out", "Visitor Permission", "Visitor In", "Visitor Out", "Employee Permission", "Employee In", "Employee Out", "Courier In", "Courier Out", "Courior Out Detail","Shift Schedule","Prospect","Prospect","Micro Test QC","Micro Test QC","Salary Slip","Attendance","Employee","Opportunity","PO Approval","Price Negotiation","Item"]]
         ]
     },
     {
         "dt": "Custom Field",
         "filters": [
-            ["dt", "in", ["Purchase Invoice", "Purchase Receipt", "BOM", "BOM Item", "BOM Scrap Item", "Production Plan", "Stock Entry", "Work Order", "Vehicle In Permissions", "Vehicle In", "Vehicle Out Permission", "Vehicle Out", "Visitor Permission", "Visitor In", "Visitor Out", "Employee Permission", "Employee In", "Employee Out", "Courier In", "Courier Out", "Courior Out Detail","Shift Schedule","Prospect","Prospect","Micro Test QC","Micro Test QC","Salary Slip","Attendance","Employee","Opportunity","PO Approval","Price Negotiation"]]
+            ["dt", "in", ["Purchase Invoice", "Purchase Receipt", "BOM", "BOM Item", "BOM Scrap Item", "Production Plan", "Stock Entry", "Work Order", "Vehicle In Permissions", "Vehicle In", "Vehicle Out Permission", "Vehicle Out", "Visitor Permission", "Visitor In", "Visitor Out", "Employee Permission", "Employee In", "Employee Out", "Courier In", "Courier Out", "Courior Out Detail","Shift Schedule","Prospect","Prospect","Micro Test QC","Micro Test QC","Salary Slip","Attendance","Employee","Opportunity","PO Approval","Price Negotiation","Item"]]
         ]
     },
         {
