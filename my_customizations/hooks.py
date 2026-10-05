@@ -256,13 +256,13 @@ fixtures = [
     {
         "dt": "Property Setter",
         "filters": [
-            ["doc_type", "in", ["Purchase Invoice", "Purchase Receipt", "BOM", "BOM Item", "BOM Scrap Item", "Production Plan", "Stock Entry" , "Work Order", "Employee", "Vehicle In Permissions", "Vehicle In", "Vehicle Out Permission", "Vehicle Out", "Visitor Permission", "Visitor In", "Visitor Out", "Employee Permission", "Employee In", "Employee Out", "Courier In", "Courier Out", "Courior Out Detail","Shift Schedule","Prospect","Prospect","Micro Test QC","Micro Test QC","Salary Slip","Attendance","Employee","Opportunity","PO Approval","Price Negotiation","Item"]]
+            ["doc_type", "in", ["Purchase Invoice", "Purchase Receipt", "BOM", "BOM Item", "Production Plan", "Stock Entry" , "Work Order", "Employee", "Vehicle In Permissions", "Vehicle In", "Vehicle Out Permission", "Vehicle Out", "Visitor Permission", "Visitor In", "Visitor Out", "Employee Permission", "Employee In", "Employee Out", "Courier In", "Courier Out", "Courior Out Detail","Shift Schedule","Prospect","Prospect","Micro Test QC","Micro Test QC","Salary Slip","Attendance","Employee","Opportunity","PO Approval","Price Negotiation","Item"]]
         ]
     },
     {
         "dt": "Custom Field",
         "filters": [
-            ["dt", "in", ["Purchase Invoice", "Purchase Receipt", "BOM", "BOM Item", "BOM Scrap Item", "Production Plan", "Stock Entry", "Work Order", "Vehicle In Permissions", "Vehicle In", "Vehicle Out Permission", "Vehicle Out", "Visitor Permission", "Visitor In", "Visitor Out", "Employee Permission", "Employee In", "Employee Out", "Courier In", "Courier Out", "Courior Out Detail","Shift Schedule","Prospect","Prospect","Micro Test QC","Micro Test QC","Salary Slip","Attendance","Employee","Opportunity","PO Approval","Price Negotiation","Item"]]
+            ["dt", "in", ["Purchase Invoice", "Purchase Receipt", "BOM", "BOM Item", "Production Plan", "Stock Entry", "Work Order", "Vehicle In Permissions", "Vehicle In", "Vehicle Out Permission", "Vehicle Out", "Visitor Permission", "Visitor In", "Visitor Out", "Employee Permission", "Employee In", "Employee Out", "Courier In", "Courier Out", "Courior Out Detail","Shift Schedule","Prospect","Prospect","Micro Test QC","Micro Test QC","Salary Slip","Attendance","Employee","Opportunity","PO Approval","Price Negotiation","Item"]]
         ]
     },
         {
@@ -324,7 +324,7 @@ fixtures = [
     {
         "dt": "DocType",
         "filters": [
-            ["name", "in", ["Section", "Manufacturing Batch","White Label","Container Code","Container Code Detail","Inner Container Label","Outer Container Label","Micro Test QC",
+            ["name", "in", ["Section","White Label","Container Code","Container Code Detail","Inner Container Label","Outer Container Label","Micro Test QC",
                             "Tracking Number","PDC Documents","Customer Technical Review","Sample Testing","Sample Sent","Sample Request","Sample Details","Sample Product","Approved Vendor Registration","Collect Commercial Information","Finance Approval","Price Negotiation","New And Existing Product Analysis Module","Section-Wise Production Capacity","Item Wise Production Capacity","CRM Prospect Item Conversion Status","Sample Sent","Sample Details","Sample Request","Sample Product","Weekly Off Roster","Weekly Off Roster Detail"]]
         ]
     },

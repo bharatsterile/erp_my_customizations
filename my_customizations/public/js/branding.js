@@ -63,24 +63,35 @@
 		const item = document.querySelector(
 			'a.desktop-icon[data-id="ERPNext Settings"]'
 		);
-
-		if (!item) return;
-                
-		// Change title
-		const title = item.querySelector(".icon-title");
-	        	
-	      if (title && title.textContent.trim() !== "BSAP Settings") {
+		if (!item) return;                
+		const title = item.querySelector(".icon-title");	        	
+	        if (title && title.textContent.trim() !== "BSAP Settings") {
 			title.textContent = "BSAP Settings";
 			title.setAttribute("data-original-title", "BSAP Settings");
-		}             
-	    /*
-		// Change icon
-		const icon = item.querySelector("img.app-icon");
-		if (icon) {
-			icon.src = "/assets/my_customizations/images/bsap-logo.jpg";
-			icon.alt = "BSAP Settings";
+		}     
+                // Find Frappe Insights desktop icon
+                const itemI = document.querySelector(
+                        'a.desktop-icon[data-id="Frappe Insights"]'
+                );
+                if (!itemI) return;
+                const title_I = itemI.querySelector(".icon-title");
+                if (title_I && title_I.textContent.trim() !== "BSAP Insights") {
+                        title_I.textContent = "BSAP Insights";
+                        title_I.setAttribute("data-original-title", "BSAP Insights");
 		}
-		*/
+				
+				
+		// Find Frappe HR desktop icon
+                const itemHR = document.querySelector(
+                        'a.desktop-icon[data-id="Frappe HR"]'
+                );
+                if (!itemHR) return;
+                const title_HR = itemHR.querySelector(".icon-title");
+                if (title_HR && title_HR.textContent.trim() !== "BSAP HR") {
+                        title_HR.textContent = "BSAP HR";
+                        title_HR.setAttribute("data-original-title", "BSAP HR");
+                }
+
 	}
 
 
